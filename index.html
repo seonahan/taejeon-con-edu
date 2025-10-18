@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk-Zero | 대전·세종 중소 건설업체 리스크 관리 전문</title>
+    <style>
+        /* ===== 기본 설정 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ===== 애니메이션 정의 ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* ===== 히어로 섹션 ===== */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: -200px;
+            right: -200px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            bottom: -150px;
+            left: -150px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-emoji {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 45px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-button.secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        /* ===== 공통 섹션 스타일 ===== */
+        section {
+            padding: 80px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #2d3748;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2em;
+            color: #718096;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== 문제 제시 섹션 ===== */
+        .problem {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .problem-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .problem-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+
+        .problem-card p {
+            color: #4a5568;
+            line-height: 1.7;
+        }
+
+        .stat-highlight {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        /* ===== 솔루션 섹션 ===== */
+        .solution {
+            background: white;
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .solution-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .solution-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 8px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        .solution-icon {
+            font-size: 70px;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .solution-card h3 {
+            font-size: 1.7em;
+            margin-bottom: 20px;
+        }
+
+        .solution-card p {
+            font-size: 1.05em;
+            line-height: 1.7;
+            opacity: 0.95;
+        }
+
+        /* ===== 서비스 섹션 ===== */
+        .services {
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 55px;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+
+        .service-card p {
+            color: #4a5568;
+            margin-bottom: 20px;
+        }
+
+        .detail-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .detail-button:hover {
+            background: #5568d3;
+            transform: scale(1.05);
+        }
+
+        /* ===== 모달 스타일 ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: fadeInUp 0.4s ease-out;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #718096;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: #2d3748;
+        }
+
+        .modal h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #2d3748;
+        }
+
+        .modal-section {
+            margin-bottom: 25px;
+        }
+
+        .modal-section h3 {
+            font-size: 1.3em;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .modal-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .modal-section li {
+            padding: 8px 0;
+            color: #4a5568;
+        }
+
+        .modal-section li::before {
+            content: '✓';
+            color: #48bb78;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* ===== 작동 방식 섹션 ===== */
+        .how-it-works {
+            background: white;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .step {
+            text-align: center;
+            padding: 30px;
+            position: relative;
+        }
+
+        .step-number {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .step h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+
+        .step p {
+            color: #4a5568;
+            line-height: 1.7;
+        }
+
+        /* ===== 특장점 섹션 ===== */
+        .features {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .feature-card:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            line-height: 1.7;
+        }
+
+        /* ===== 가격 섹션 ===== */
+        .pricing {
+            background: white;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .pricing-card {
+            background: linear-gradient(135deg, #f6f8fb 0%, #ffffff 100%);
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 35px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+
+        .pricing-card.featured {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .plan-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .plan-name {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .plan-price {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .pricing-card.featured .plan-price {
+            color: white;
+        }
+
+        .plan-duration {
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .plan-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .pricing-card.featured .plan-features li {
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .plan-features li::before {
+            content: '✓';
+            color: #48bb78;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .pricing-card.featured .plan-features li::before {
+            color: #a8edea;
+        }
+
+        /* ===== FAQ 섹션 ===== */
+        .faq {
+            background: linear-gradient(135deg, #fff5f7 0%, #f3e7ff 100%);
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 50px auto 0;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .faq-question {
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .faq-question:hover {
+            background: #f7fafc;
+        }
+
+        .faq-icon {
+            margin-right: 15px;
+        }
+
+        .faq-toggle {
+            font-size: 24px;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 30px;
+            color: #4a5568;
+            line-height: 1.7;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 30px 25px 30px;
+        }
+
+        /* ===== 최종 CTA 섹션 ===== */
+        .final-cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 2.8em;
+            margin-bottom: 20px;
+        }
+
+        .final-cta p {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .final-cta-emoji {
+            font-size: 70px;
+            margin-bottom: 30px;
+        }
+
+        /* ===== 푸터 ===== */
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 50px 20px 30px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #cbd5e0;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #4a5568;
+            color: #cbd5e0;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #667eea;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .back-to-top:hover {
+            background: #5568d3;
+            transform: translateY(-5px);
+        }
+
+        /* ===== 반응형 디자인 ===== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .hero-emoji {
+                font-size: 60px;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-button {
+                width: 100%;
+            }
+
+            .modal-content {
+                padding: 30px 20px;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            .final-cta h2 {
+                font-size: 2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.6em;
+            }
+
+            .section-title {
+                font-size: 1.7em;
+            }
+
+            .solution-icon,
+            .plan-icon {
+                font-size: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 히어로 섹션 -->
+    <section class="hero">
+        <div class="hero-content fade-in">
+            <div class="hero-emoji">🏗️ 🛡️ 📊</div>
+            <h1>중소 건설업체 Risk-Zero</h1>
+            <p>대전·세종 지역 중소 건설업체의 수익구조 개선과 리스크 최소화를 위한<br>전문 컨설팅 및 실무 교육 시스템</p>
+            <div class="cta-buttons">
+                <a href="#services" class="cta-button">서비스 소개 보기</a>
+                <a href="https://forms.gle/YOUR_FORM_LINK" target="_blank" class="cta-button secondary">무료 상담 신청</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 문제 제시 섹션 -->
+    <section class="problem">
+        <div class="container">
+            <h2 class="section-title">🚨 왜 Risk-Zero가 필요한가요?</h2>
+            <p class="section-subtitle">대전·세종 지역 중소 건설업체들이 직면한 현실적인 문제들</p>
+            <div class="problem-grid">
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">💸</div>
+                    <h3>낮은 수익률과 예측 불가능한 원가</h3>
+                    <p>입찰가격 산정 오류, 자재비 급등, 인건비 상승으로 인한 실제 공사 원가가 예상을 초과하여 프로젝트당 평균 15-20%의 수익 손실이 발생합니다.</p>
+                    <span class="stat-highlight">수익률 15-20% 하락</span>
+                </div>
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">⚠️</div>
+                    <h3>계약 및 법적 리스크 관리 미흡</h3>
+                    <p>계약서 검토 소홀, 하도급 관리 부재, 안전사고 대응 미비로 인한 법적 분쟁과 손해배상이 경영을 위협합니다.</p>
+                    <span class="stat-highlight">연평균 2-3건 법적 분쟁</span>
+                </div>
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">📉</div>
+                    <h3>체계적인 리스크 관리 시스템 부재</h3>
+                    <p>경험에만 의존하는 의사결정, 부실한 현장관리, 데이터 기반 분석 부족으로 인해 같은 실수가 반복되고 경쟁력이 저하됩니다.</p>
+                    <span class="stat-highlight">체계적 관리 시스템 0%</span>
+                </div>
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">🔄</div>
+                    <h3>인력 관리 및 업무 프로세스의 비효율</h3>
+                    <p>숙련 인력 부족, 세대 간 기술 전수 단절, 표준화되지 않은 업무 프로세스로 인한 생산성 저하와 품질 불균형이 발생합니다.</p>
+                    <span class="stat-highlight">생산성 30% 이하</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 솔루션 섹션 -->
+    <section class="solution">
+        <div class="container">
+            <h2 class="section-title">✨ Risk-Zero의 해결책</h2>
+            <p class="section-subtitle">데이터 기반 분석과 실무 중심 교육으로 귀사의 리스크를 제로화합니다</p>
+            <div class="solution-grid">
+                <div class="solution-card fade-in">
+                    <span class="solution-icon">💡</span>
+                    <h3>맞춤형 리스크 진단 및 컨설팅</h3>
+                    <p>귀사의 현재 상황을 정확히 진단하고, 업종·규모·지역 특성에 맞는 실행 가능한 리스크 관리 로드맵을 제시합니다. 재무·법무·현장 안전·계약 관리 전 영역을 아우르는 통합 솔루션을 제공합니다.</p>
+                </div>
+                <div class="solution-card fade-in">
+                    <span class="solution-icon">🎓</span>
+                    <h3>실무자 중심 체계적 교육</h3>
+                    <p>이론이 아닌 실제 현장에서 바로 활용 가능한 실무 교육을 제공합니다. 원가관리, 계약서 작성, 안전관리, 분쟁 대응 등 핵심 업무 역량을 강화하여 조직 전체의 리스크 대응 능력을 향상시킵니다.</p>
+                </div>
+                <div class="solution-card fade-in">
+                    <span class="solution-icon">🔧</span>
+                    <h3>지속 가능한 시스템 구축 지원</h3>
+                    <p>일회성 컨설팅이 아닌, 귀사에 최적화된 리스크 관리 시스템을 구축하고 정착시킵니다. 체크리스트, 매뉴얼, 모니터링 도구를 제공하여 컨설팅 종료 후에도 자체적으로 관리할 수 있도록 지원합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 서비스 소개 섹션 -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">🎯 제공 서비스</h2>
+            <p class="section-subtitle">대전·세종 중소 건설업체를 위한 전문 서비스 라인업</p>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">🔍</div>
+                    <h3>리스크 진단 서비스</h3>
+                    <p>현장 방문 및 심층 인터뷰를 통한 종합적인 리스크 진단과 분석</p>
+                    <button class="detail-button" onclick="openModal('modal1')">자세히 보기</button>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">📊</div>
+                    <h3>원가관리 컨설팅</h3>
+                    <p>정확한 원가 산정과 수익률 개선을 위한 맞춤 컨설팅</p>
+                    <button class="detail-button" onclick="openModal('modal2')">자세히 보기</button>
+                </div>
+                <div class="service
